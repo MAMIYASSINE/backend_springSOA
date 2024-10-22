@@ -21,26 +21,26 @@ public class VoitureRESTController {
 	@Autowired
 	VoitureService voitureService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(path="all",method = RequestMethod.GET)
 	public List<Voiture> getAllVoitures() {
 		return voitureService.getAllVoitures();
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getbyid/{id}", method = RequestMethod.GET)
 	public Voiture getVoitureById(@PathVariable("id") Long id) {
 		return voitureService.getVoiture(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/addvoiture",method = RequestMethod.POST)
 	public Voiture createVoiture(@RequestBody Voiture voiture) {
 		return voitureService.saveVoiture(voiture);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value = "/updatevoiture",method = RequestMethod.PUT)
 	public Voiture updateVoiture(@RequestBody Voiture voiture) {
 		return voitureService.updateVoiture(voiture);
 	}
-	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/delvoiture/{id}",method = RequestMethod.DELETE)
 	public void deleteVoiture(@PathVariable("id") Long id) {
 		voitureService.deleteVoitureById(id);
 	}
