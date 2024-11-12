@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.voitures.entities.Marque;
 import com.project.voitures.entities.Voiture;
+import com.project.voitures.repos.ImageRepository;
 import com.project.voitures.repos.VoitureRepository;
 
 @Service
@@ -15,14 +16,26 @@ public class VoitureServiceImpl implements VoitureService {
 	@Autowired
 	private VoitureRepository voitureRepository;
 
+	@Autowired
+	private ImageRepository imageRepository;
+
 	@Override
 	public Voiture saveVoiture(Voiture v) {
 		return voitureRepository.save(v);
 	}
 
+	/*
+	 * @Override public Voiture updateVoiture(Voiture v) { return
+	 * voitureRepository.save(v); }
+	 */
 	@Override
 	public Voiture updateVoiture(Voiture v) {
-		return voitureRepository.save(v);
+//		Long oldVoitImageId = this.getVoiture(v.getIdVoiture()).getImage().getIdImage();
+//		Long newVoitImageId = v.getImage().getIdImage();
+		Voiture voitUpdated = voitureRepository.save(v);
+//		if (oldVoitImageId != newVoitImageId) // si l'image a été modifiée
+//			imageRepository.deleteById(oldVoitImageId);
+		return voitUpdated;
 	}
 
 	@Override

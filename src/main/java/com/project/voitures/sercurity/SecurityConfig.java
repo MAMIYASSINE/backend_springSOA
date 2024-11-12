@@ -39,14 +39,17 @@ public class SecurityConfig {
 					return cors;
 					}
 					}).and() )
-				.authorizeHttpRequests(requests -> requests
+				.authorizeHttpRequests()
+				.anyRequest().permitAll();
+						
+						/*requests -> requests
 						.requestMatchers("/api/all/**").hasAnyAuthority("ADMIN","USER")
 						.requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN","USER")
-						.requestMatchers(HttpMethod.POST,"/api/addvoiture/**").hasAnyAuthority("ADMIN")
+						.requestMatchers(HttpMethod.POST,"/api/addvoiture/**").hasAnyAuthority("ADMIN","USER")
 						.requestMatchers(HttpMethod.PUT,"/api/updatevoiture/**").hasAuthority("ADMIN")
 						.requestMatchers(HttpMethod.DELETE,"/api/delvoiture/**").hasAuthority("ADMIN")
 						.anyRequest().authenticated())
-						.addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);		
+						.addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);*/		
 		return http.build();
 	}
 }
