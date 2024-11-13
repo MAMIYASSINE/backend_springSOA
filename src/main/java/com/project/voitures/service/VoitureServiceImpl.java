@@ -1,5 +1,8 @@
 package com.project.voitures.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +49,14 @@ public class VoitureServiceImpl implements VoitureService {
 
 	@Override
 	public void deleteVoitureById(Long id) {
+		Voiture v = getVoiture(id);
+		// suuprimer l'image avant de supprimer la voiture
+		String uploadDir = "D:/images/";
+		try {
+			Files.delete(Paths.get(uploadDir + v.getImagePath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		voitureRepository.deleteById(id);
 	}
 
